@@ -4,14 +4,34 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />
+        <!-- Android -->
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- iOS -->
+        <!-- <meta name=”viewport” content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover"> -->
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' 
                 http://mirage-app-dev.s3-us-west-1.amazonaws.com 
                 https://bdcodigoerror.firebaseio.com; 
                 style-src 'self' 'unsafe-inline'; media-src *" />
         <link rel="stylesheet" href="css/bootstrap.min.css" >
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title></title>
+        <title>Codigos Diagnostico</title>
+        <!-- iOS -->
+        <!-- <style>
+            body {
+                padding-top: constant(safe-area-inset-top);
+                /* iOS 11.0 */
+                padding-top: env(safe-area-inset-top);
+                /* iOS 11.2 */
+            }
+        
+            .noticia,
+            .articulo {
+                margin-bottom: constant(safe-area-inset-bottom);
+                /* iOS 11.0 */
+                margin-bottom: env(safe-area-inset-bottom);
+                /* iOS 11.2 */
+            }
+        </style> -->
     </head>
 
     <body>
@@ -126,10 +146,10 @@
         </section>
 
         <script type="text/javascript" src="cordova.js"></script>
-        <script src="js/jquery-3.3.1.slim.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/hammer.min.js"></script>
-        <script src="js/fontawesome-all.min.js"></script>
+        <script type="text/javascript"src="js/jquery-3.3.1.slim.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/hammer.min.js"></script>
+        <script type="text/javascript" src="js/fontawesome-all.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
