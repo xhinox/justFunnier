@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' 
+                http://mirage-app-dev.s3-us-west-1.amazonaws.com 
+                https://bdcodigoerror.firebaseio.com; 
+                style-src 'self' 'unsafe-inline'; media-src *" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" >
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title></title>
+    </head>
+
+    <body>
+
+        <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="loader"></div>
+                        <div class="loader-txt">
+                            <p>Descargando listas...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="home container-fluid text-center position-absolute is-center" style="z-index: 9999;">
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <img src="img/titulo2.png" alt="" />
+                </div>
+                <div class="col-12 my-4">
+                    <p class="h5">Para consultar los códigos de diagnóstico de nuestros modelos oprima el siguiente botón.</p>
+                </div>
+                    
+                <div class="col-12">
+                    <img class="btnConsulta" src="img/consultaboton.png" alt="" width="100" height="auto" />
+                </div>
+                    
+                <!-- <div class="col-12 mt-4">
+                    <div class="form-group d-inline">
+                        <input type="email" class="form-control d-inline mr-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" style="width:120px" />
+                        <img src="img/tool.png" class="btn" alt="" width="45" height="auto" />
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <section class="equipos container-fluid position-absolute is-center is-hidden">
+            <header class="sticky-top">
+                <!-- <div class="position-absolute btnMenu-back" data-item="menu"></div> -->
+                <div class="position-absolute btnMenu-update" data-item="update"></div>
+                <nav class="nav row align-items-center">
+                    <div class="col-1">
+                        <!-- <i class="fas fa-bars fa-lg"></i> -->
+                    </div>
+                    <div class="col text-center">Equipos</div>
+                    <div class="col-1 p-0">
+                        <i class="fas fa-redo-alt fa-lg"></i>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="container-fluid mt-2 p-0">
+                <div class="row">
+                    <div class="col">
+                        <div class="search">
+                            <div class="input-group mb-2">
+                                <input type="text" id="txtSearchCode" class="form-control text-danger" placeholder="Capture el codigo"
+                                    aria-label="Capture el codigo" aria-describedby="btnSearchCode" maxlength="2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger" type="button" id="btnSearchCode">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col p-0">
+                        <div class="equipos-fill d-flex"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="codigos container-fluid position-absolute is-right is-hidden">
+            <header class="sticky-top">
+                <div class="position-absolute btnMenu-back" data-link="back"></div>
+                <nav class="nav row align-items-center">
+                    <div class="col-1"><i class="fas fa-angle-left fa-lg"></i></div>
+                    <div class="col-10 text-center">Codigos</div>
+                </nav>
+            </header>
+
+            <div class="container-fluid mt-1 p-0">
+                <div class="row">
+                    <div class="col p-0">
+                        <div class="codigos-fill d-flex"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="articulo container-fluid position-absolute is-right is-hidden">
+            <header class="sticky-top">
+                <div class="position-absolute btnMenu-back" data-link="back"></div>
+                <nav class="nav row align-items-center">
+                    <div class="col-1"><i class="fas fa-angle-left fa-lg"></i></div>
+                    <div class="col-10 text-center">Articulo</div>
+                </nav>
+            </header>
+
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body articulo-fill">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="js/jquery-3.3.1.slim.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/hammer.min.js"></script>
+        <script src="js/fontawesome-all.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        
+    </body>
+</html>
