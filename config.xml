@@ -40,7 +40,7 @@
     <plugin name="cordova-plugin-network-information" spec="~1.3.4" />
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
-    <plugin name="cordova-plugin-keyboard" spec="~1.2.0" />
+    <plugin name="cordova-plugin-keyboard" source="npm" spec="~1.2.0" />
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
     
     <allow-navigation href="http://*" />
@@ -51,8 +51,8 @@
     <allow-navigation href="about:*" />
     <allow-navigation href="tel:*" />
     <allow-navigation href="gap:*" />
-    <access origin="*.pushwoosh.com" />
     <access origin="*" />
+    <access origin="*.pushwoosh.com" />
 
     <platform name="android">
         <allow-intent href="market:*" />
