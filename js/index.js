@@ -1,13 +1,31 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 var app = {
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    onDeviceReady: function() {        
+    onDeviceReady: function () {
         app.receivedEvent('deviceready');
-        
+
         console.log(device.uuid);
         Keyboard.hideFormAccessoryBar(true);
         initPushwoosh();
@@ -29,39 +47,35 @@ var app = {
             });
         }
     },
-    receivedEvent: function(id) {
-        var conexion = checkConnection();
-        
+    receivedEvent: function (id) {
+        document.addEventListener("offline", function () {
+            const $download = localStorage.getItem("lstequipos");
+
+            if (!$download) {
+                alert("favor de conectarse y descargar la base de datos");
+            }
+
+        }, false);
+
+        document.addEventListener("online", function () {
+            downloadLists(false);
+        }, false);
+
         const $equipoFill = document.querySelector(".equipos-fill"),
-                $codigoFill = document.querySelector(".codigos-fill"),
-                $articuloFill = document.querySelector(".articulo-fill");
-                
+            $codigoFill = document.querySelector(".codigos-fill"),
+            $articuloFill = document.querySelector(".articulo-fill");
+
         let $lstEquipo, $lstCodigo,
             filtro = false;
 
         const BASE_URL = 'https://mirage-app-dev.s3-us-west-1.amazonaws.com/errCode/';
 
-        function checkConnection() {
-            var networkState = navigator.connection.type;
-
-            var states = {};
-            states[Connection.UNKNOWN] = 'Unknown';
-            states[Connection.ETHERNET] = 'Ethernet';
-            states[Connection.WIFI] = 'WiFi';
-            states[Connection.CELL_2G] = 'Cell 2G';
-            states[Connection.CELL_3G] = 'Cell 3G';
-            states[Connection.CELL_4G] = 'Cell 4G';
-            states[Connection.CELL] = 'generic';
-            states[Connection.NONE] = 'No network';
-
-            return states[networkState]
-        }
 
         function equipoTemplate($eq, $logo, $index, $local) {
             var image;
 
             if ($local) {
-                image = `img/logos/${$logo}`;
+                image = `./img/logos/${$logo}`;
             } else {
                 image = `${BASE_URL}logos/${$logo}`;
             }
@@ -83,34 +97,40 @@ var app = {
             );
         }
 
-        function articuloTemplate($cod, $equip, $desc, $sol) {
+        function articuloTemplate($name, $cod, $equip, $desc, $sol) {
             var image;
 
             if ($equip.local) {
-                image = `img/equipos/${$equip.image}`;
+                image = `./img/equipos/${$equip.image}`;
             } else {
                 image = `${BASE_URL}equipos/${$equip.image}`;
             }
 
+            const $descripcion = $desc.replace(/(\r\n|\n|\r)/gm, "<br>"),
+                $solucion = $sol.replace(/(\r\n|\n|\r)/gm, "<br>");
+
             return (
                 `
-                <div class="card-text">
-                    <header class="position-relative mb-3">
-                        <div class="artElement position-absolute">${$cod}</div>
-                        <img src="${image}" width="100%" height="auto" alt="" />
-                    </header>
-                    <section>
-                        <h4>Significado</h4>
-                        <p>${ $desc }</p>
-                    </section>
-                    <section>
-                        <h4>Puntos a revisar</h4>
-                        <p>${ $sol }</p>
-                    </section>
+                <div class="card-body">
+                    <h4 class="card-title text-center text-uppercase font-weight-bold mb-3">${$name}</h4>
+                    <div class="card-text">
+                        <header class="position-relative mb-3">
+                            <div class="artElement position-absolute">${$cod}</div>
+                            <img src="${image}" width="100%" height="auto" alt="" />
+                        </header>
+                        <section>
+                            <h4>Significado</h4>
+                            <p>${ $descripcion}</p>
+                        </section>
+                        <section>
+                            <h4>Puntos a revisar</h4>
+                            <p>${ $solucion}</p>
+                        </section>
+                    </div>
                 </div>`
             );
         }
-        
+
         function createTemplate(HTMLString) {
             const $html = document.implementation.createHTMLDocument();
             $html.body.innerHTML = HTMLString;
@@ -128,29 +148,22 @@ var app = {
         }
 
         async function downloadLists(update) {
-            if (conexion !== "No network") {
+            $("#loadMe").modal({
+                backdrop: "static", //remove ability to close modal with click
+                keyboard: false, //remove option to close with keyboard
+                show: true //Display loader!
+            });
 
-                $("#loadMe").modal({
-                    backdrop: "static", //remove ability to close modal with click
-                    keyboard: false, //remove option to close with keyboard
-                    show: true //Display loader!
-                });
-
-                if (update) {
-                    localStorage.removeItem("lstequipos");
-                    localStorage.removeItem("lstcodigos");
-                    localStorage.removeItem("lstequivalente");
-                }
-
-                $lstEquipo = await cacheExists("equipos");
-                $lstCodigo = await cacheExists("codigos");
-                $lstEquivalente = await cacheExists("equivalente");
-                loadEquip();
-
+            if (update) {
+                localStorage.removeItem("lstequipos");
+                localStorage.removeItem("lstcodigos");
+                localStorage.removeItem("lstequivalente");
             }
-            else {
-                alert("No se encuentra conectado a la red, intentelo de nuevo cuando se conecte a una red 4g o Wifi")
-            }
+
+            $lstEquipo = await cacheExists("equipos");
+            $lstCodigo = await cacheExists("codigos");
+            $lstEquivalente = await cacheExists("equivalente");
+            loadEquip();
         }
 
         async function cacheExists(elem) {
@@ -171,11 +184,11 @@ var app = {
 
                 $equipoFill.innerHTML = "";
                 const $lstEq = Object.keys($lstEquipo), $lstDetail = Object.values($lstEquipo);
-                
+
                 $lstEq.forEach((elem, i) => {
                     if ($lstDetail[i].visible) {
                         const HTMLString = equipoTemplate(elem, $lstDetail[i].logo, i, $lstDetail[0].local);
-                        const $rowElement = createTemplate(HTMLString);                 
+                        const $rowElement = createTemplate(HTMLString);
                         $equipoFill.append($rowElement);
                     }
                 });
@@ -183,7 +196,7 @@ var app = {
                 setTimeout(function (e) {
                     $("#loadMe").modal("hide");
                 }, 1000);
-                
+
             } catch (error) {
                 console.log(error);
             }
@@ -223,7 +236,7 @@ var app = {
                     $codigoFill.append($rowElement);
                     $codigoFill.scrollTop = 0;
                 }
-                
+
             } catch (error) {
                 console.log(error);
             }
@@ -241,15 +254,15 @@ var app = {
                         break
                     }
                 }
-                
+
                 $equipoFill.innerHTML = "";
                 const $lstValue = Object.values($lstVals[$indexKey]);
                 let count = 0;
                 $lstValue.forEach((elem) => {
                     var $lst = Object.keys(elem);
-                    
+
                     $lst.forEach((title) => {
-                        if(title in $lstEquipo){
+                        if (title in $lstEquipo) {
                             const HTMLString = equipoTemplate(title, $lstEquipo[title].logo, count);
                             const $rowElement = createTemplate(HTMLString);
                             $equipoFill.append($rowElement);
@@ -265,12 +278,14 @@ var app = {
         }
 
         function loadArticulo($equipo, $codigo) {
+
             if (!filtro) {
+                const $artTitle = Object.keys($lstCodigo)[$equipo.equipo];
                 const $artEquipo = Object.values($lstCodigo)[$equipo.equipo];
                 const $artCodigo = Object.values($artEquipo)[$codigo];
                 const $artCode = Object.keys($artEquipo)[$codigo];
-    
-                const HTMLString = articuloTemplate($artCode, $equipo, $artCodigo.descrip, $artCodigo.solucion);
+
+                const HTMLString = articuloTemplate($artTitle, $artCode, $equipo, $artCodigo.descrip, $artCodigo.solucion);
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
@@ -283,10 +298,10 @@ var app = {
                 const $lstIndex = $lstEq.findIndex((elem) => {
                     return elem == $selectEq.dataset.eq;
                 });
-                
+
                 const $selectCode = Object.values($lstCodigo)[$lstIndex][$txtCodigo];
 
-                const HTMLString = articuloTemplate($txtCodigo, $equipo, $selectCode.descrip, $selectCode.solucion);
+                const HTMLString = articuloTemplate($selectEq.dataset.eq, $txtCodigo, $equipo, $selectCode.descrip, $selectCode.solucion);
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
@@ -296,7 +311,7 @@ var app = {
         }
 
         const $txtSearch = document.getElementById("txtSearchCode");
-        $txtSearch.addEventListener("keyup", async function(e) {
+        $txtSearch.addEventListener("keyup", async function (e) {
             if (e.target.value == "") {
                 $("#loadMe").modal({
                     backdrop: "static", //remove ability to close modal with click
@@ -311,15 +326,15 @@ var app = {
         const $equipo = document.querySelector(".equipos"), $screenEquipo = new Hammer($equipo);
         const $codigo = document.querySelector(".codigos"), $screenCodigo = new Hammer($codigo);
         const $articulo = document.querySelector(".articulo"), $screenArticulo = new Hammer($articulo);
-        
+
         function moveScreen($sc1, $sc2, $action) {
-            
+
             $sc2.classList.remove("is-hidden");
             if ($action === "fwd") {
 
                 $sc1.classList.remove("is-center");
                 $sc1.classList.add("is-left");
-                
+
                 $sc2.classList.remove("is-right");
                 $sc2.classList.add("is-center");
 
@@ -336,16 +351,16 @@ var app = {
 
         }
 
-        $screenHome.on("tap", function(elem) {
+        $screenHome.on("tap", function (elem) {
             const $target = elem.target;
-           
+
             if ($target.classList.contains("btnConsulta")) {
                 downloadLists(false);
                 moveScreen($home, $equipo, "fwd");
             }
         });
 
-        $screenEquipo.on("tap", async function(elem) {
+        $screenEquipo.on("tap", async function (elem) {
             const $target = elem.target;
 
             const $txtSearch = document.getElementById("txtSearchCode").value;
@@ -381,9 +396,9 @@ var app = {
                     moveScreen($equipo, $articulo, "fwd");
                 }
             }
-        });  
-        
-        $screenCodigo.on("tap", async function(elem) {
+        });
+
+        $screenCodigo.on("tap", async function (elem) {
             const $target = elem.target;
 
             if ($target.classList.contains("btnMenu-back")) {
