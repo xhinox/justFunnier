@@ -46,10 +46,10 @@ var app = {
             pushwoosh.registerDevice(
                 function (status) {
                     var pushToken = status.pushToken;
-                    // handle successful registration here
+                    alert("usuario registrado: " + pushToken);
                 },
                 function (status) {
-                    // handle registration error here
+                    alert("err: " + pushToken);
                 }
             );
         }
