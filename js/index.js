@@ -26,26 +26,37 @@ var app = {
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
 
-        console.log(device.uuid);
-        Keyboard.hideFormAccessoryBar(true);
-        initPushwoosh();
-
+        
         function initPushwoosh() {
             var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
-
+            
             // Should be called before pushwoosh.onDeviceReady
             document.addEventListener('push-notification', function (event) {
                 var notification = event.notification;
                 // handle push open here
             });
-
+            
             // Initialize Pushwoosh. This will trigger all pending push notifications on start.
             pushwoosh.onDeviceReady({
                 projectid: "101718936258",
                 appid: "914DB-1F5D7",
                 serviceName: ""
             });
+
+            pushwoosh.registerDevice(
+                function (status) {
+                    var pushToken = status.pushToken;
+                    // handle successful registration here
+                },
+                function (status) {
+                    // handle registration error here
+                }
+            );
         }
+
+        console.log(device.uuid);
+        Keyboard.hideFormAccessoryBar(true);
+        initPushwoosh();
     },
     receivedEvent: function (id) {
         document.addEventListener("offline", function () {
