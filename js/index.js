@@ -263,7 +263,7 @@ var app = {
 
                     $lst.forEach((title) => {
                         if (title in $lstEquipo) {
-                            const HTMLString = equipoTemplate(title, $lstEquipo[title].logo, count);
+                            const HTMLString = equipoTemplate(title, $lstEquipo[title].logo, count, $lstEquipo[title].local);
                             const $rowElement = createTemplate(HTMLString);
                             $equipoFill.append($rowElement);
                             count++;
@@ -390,9 +390,11 @@ var app = {
 
                 if (!filtro) {
                     await loadCodigo($target.dataset.id);
+                    window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
                     moveScreen($equipo, $codigo, "fwd");
                 } else {
                     await loadArticulo(saveData, $target.dataset.id);
+                    window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                     moveScreen($equipo, $articulo, "fwd");
                 }
             }
@@ -408,6 +410,7 @@ var app = {
             else if ($target.parentElement.classList.contains("codigos-fill") || $target.parentElement.classList.contains("codElement")) {
                 const $selEquipo = JSON.parse(sessionStorage.getItem("equipo"));
                 await loadArticulo($selEquipo, $target.dataset.id);
+                window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                 moveScreen($codigo, $articulo, "fwd");
             }
         });
@@ -417,8 +420,10 @@ var app = {
 
             if ($target.classList.contains("btnMenu-back")) {
                 if (!filtro) {
+                    window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
                     moveScreen($articulo, $codigo, "rew");
                 } else {
+                    window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                     moveScreen($articulo, $equipo, "rew");
                 }
             }
