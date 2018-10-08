@@ -70,6 +70,10 @@ body {
     visibility: hidden;
 }
 
+.articulo .is-center {
+    height: 100%;
+}
+
 .fa-bars,
 .fa-angle-left {
     cursor: pointer;
