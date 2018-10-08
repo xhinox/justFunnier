@@ -38,32 +38,41 @@ var app = {
         console.log(device.uuid);
         Keyboard.hideFormAccessoryBar(true);
         initPushwoosh();
-
-        function backScreen($sc1, $sc2) {
-            $sc2.classList.remove("is-hidden");
-
-            $sc1.classList.remove("is-center");
-            $sc1.classList.add("is-right");
-
-            $sc2.classList.remove("is-left");
-            $sc2.classList.add("is-center");
-
-            $sc1.classList.add("is-hidden");
-        }
-
+        
         document.addEventListener("backbutton", function () {
             const $scArticulo = document.querySelector(".articulo"),
-                $scCodigo = document.querySelector(".codigos");
-
-            alert('entro')
+                $scCodigo = document.querySelector(".codigos"),
+                $scEquipo = document.querySelector(".equipos");
+            
             if ($scArticulo.classList.contains("is-center")) {
+                
+                $scCodigo.classList.remove("is-hidden");
+                
+                $scArticulo.classList.remove("is-center");
+                $scArticulo.classList.add("is-right");
+                
+                $scCodigo.classList.remove("is-left");
+                $scCodigo.classList.add("is-center");
+                
+                $scArticulo.classList.add("is-hidden");
+                
                 alert('articulo > codigo');
-                backScreen($articulo, $codigo);
             }
             else if ($scCodigo.classList.contains("is-center")) {
-                alert('codigo > equipo');
                 backScreen($codigo, $equipo);
+                
+                $scEquipo.classList.remove("is-hidden");
+                
+                $scCodigo.classList.remove("is-center");
+                $scCodigo.classList.add("is-right");
+                
+                $scEquipo.classList.remove("is-left");
+                $scEquipo.classList.add("is-center");
+                
+                $scCodigo.classList.add("is-hidden");
                 $scCodigo.innerHTML = "";
+                
+                alert('codigo > equipo');
             }            
 
         }, false);
