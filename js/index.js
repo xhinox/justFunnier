@@ -6,8 +6,7 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function () {
-        app.receivedEvent('deviceready');
-
+        
         
         function initPushwoosh() {
             var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
@@ -24,7 +23,7 @@ var app = {
                 appid: "914DB-1F5D7",
                 serviceName: ""
             });
-
+            
             pushwoosh.registerDevice(
                 function (status) {
                     var pushToken = status.pushToken;
@@ -35,10 +34,30 @@ var app = {
                 }
             );
         }
-
+            
         console.log(device.uuid);
         Keyboard.hideFormAccessoryBar(true);
         initPushwoosh();
+
+        document.addEventListener("backbutton", function (e) {
+            alert("sdasd");
+            alert("target: " + e.target);
+            alert("Current: " + e.currentTarget);
+            // if ($articulo.hasClass("is-center")) {
+            //     moveScreen($articulo, $codigo, "rew");
+            // }
+            // else if ($codigo.hasClass("is-center")) {
+            //     moveScreen($codigo, $equipo, "rew");
+            //     $codigoFill.innerHTML = "";
+            // }
+            // else if ($equipo.hasClass("is-center")) {
+            //     if (confirm("¿Desea salir de la aplicación?")) {
+            //         e.preventDefault();
+            //         navigator.app.exitApp();
+            //     }
+            // }
+        }, false);
+        app.receivedEvent('deviceready');
     },
     receivedEvent: function (id) {
         document.addEventListener("offline", function () {
@@ -421,22 +440,6 @@ var app = {
                 }
             }
         });
-
-        document.addEventListener("backbutton", function () {
-            if ($articulo.hasClass("is-center")) {
-                moveScreen($articulo, $codigo, "rew");
-            }
-            else if ($codigo.hasClass("is-center")) {
-                moveScreen($codigo, $equipo, "rew");
-                $codigoFill.innerHTML = "";
-            }
-            else if ($equipo.hasClass("is-center")) {
-                if (confirm("¿Desea salir de la aplicación?")) {
-                    e.preventDefault();
-                    navigator.app.exitApp();
-                }
-            }
-        }, false);
 
     }
 };
