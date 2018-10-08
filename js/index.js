@@ -51,14 +51,17 @@ var app = {
             $sc1.classList.add("is-hidden");
         }
 
-        document.addEventListener("backbutton", function (e) {
+        document.addEventListener("backbutton", function () {
             const $scArticulo = document.querySelector(".articulo"),
                 $scCodigo = document.querySelector(".codigos");
 
+            alert('entro')
             if ($scArticulo.classList.contains("is-center")) {
+                alert('articulo > codigo');
                 backScreen($articulo, $codigo);
             }
             else if ($scCodigo.classList.contains("is-center")) {
+                alert('codigo > equipo');
                 backScreen($codigo, $equipo);
                 $scCodigo.innerHTML = "";
             }            
