@@ -27,10 +27,8 @@ var app = {
             pushwoosh.registerDevice(
                 function (status) {
                     var pushToken = status.pushToken;
-                    alert("usuario registrado: " + pushToken);
                 },
                 function (status) {
-                    alert("err: " + pushToken);
                 }
             );
         }
@@ -55,8 +53,7 @@ var app = {
                 $scCodigo.classList.add("is-center");
                 
                 $scArticulo.classList.add("is-hidden");
-                
-                alert('articulo > codigo');
+            
             }
             else if ($scCodigo.classList.contains("is-center")) {
                                 
