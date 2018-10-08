@@ -59,8 +59,7 @@ var app = {
                 alert('articulo > codigo');
             }
             else if ($scCodigo.classList.contains("is-center")) {
-                backScreen($codigo, $equipo);
-                
+                                
                 $scEquipo.classList.remove("is-hidden");
                 
                 $scCodigo.classList.remove("is-center");
