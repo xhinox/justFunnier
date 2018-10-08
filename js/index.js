@@ -37,41 +37,6 @@ var app = {
         Keyboard.hideFormAccessoryBar(true);
         initPushwoosh();
         
-        document.addEventListener("backbutton", function () {
-            const $scArticulo = document.querySelector(".articulo"),
-                $scCodigo = document.querySelector(".codigos"),
-                $scEquipo = document.querySelector(".equipos");
-            
-            if ($scArticulo.classList.contains("is-center")) {
-                
-                $scCodigo.classList.remove("is-hidden");
-                
-                $scArticulo.classList.remove("is-center");
-                $scArticulo.classList.add("is-right");
-                
-                $scCodigo.classList.remove("is-left");
-                $scCodigo.classList.add("is-center");
-                
-                $scArticulo.classList.add("is-hidden");
-            
-            }
-            else if ($scCodigo.classList.contains("is-center")) {
-                                
-                $scEquipo.classList.remove("is-hidden");
-                
-                $scCodigo.classList.remove("is-center");
-                $scCodigo.classList.add("is-right");
-                
-                $scEquipo.classList.remove("is-left");
-                $scEquipo.classList.add("is-center");
-                
-                $scCodigo.classList.add("is-hidden");
-                $scCodigo.innerHTML = "";
-                
-                alert('codigo > equipo');
-            }            
-
-        }, false);
         app.receivedEvent('deviceready');
     },
     receivedEvent: function (id) {
@@ -456,5 +421,16 @@ var app = {
             }
         });
 
+        document.addEventListener("backbutton", function () {
+           
+            if ($articulo.classList.contains("is-center")) {
+                moveScreen($articulo, $codigo, "rew");
+            }
+            else if ($codigo.classList.contains("is-center")) {
+                moveScreen($codigo, $equipo, "rew");
+                $codigoFill.innerHTML = "";
+            }
+
+        }, false);
     }
 };
