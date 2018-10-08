@@ -428,10 +428,10 @@ var app = {
 
         document.addEventListener("backbutton", function () {
             if ($articulo.hasClass("is-center")) {
-                navigator.app.backHistory();
+                moveScreen($articulo, $codigo, "rew");
             }
             else if ($codigo.hasClass("is-center")) {
-                navigator.app.backHistory();
+                moveScreen($codigo, $equipo, "rew");
                 $codigoFill.innerHTML = "";
             }
             else if ($equipo.hasClass("is-center")) {
