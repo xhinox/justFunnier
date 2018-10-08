@@ -39,23 +39,30 @@ var app = {
         Keyboard.hideFormAccessoryBar(true);
         initPushwoosh();
 
+        function backScreen($sc1, $sc2) {
+            $sc2.classList.remove("is-hidden");
+
+            $sc1.classList.remove("is-center");
+            $sc1.classList.add("is-right");
+
+            $sc2.classList.remove("is-left");
+            $sc2.classList.add("is-center");
+
+            $sc1.classList.add("is-hidden");
+        }
+
         document.addEventListener("backbutton", function (e) {
-            alert("sdasd");
-            alert("target: " + e.target);
-            alert("Current: " + e.currentTarget);
-            // if ($articulo.hasClass("is-center")) {
-            //     moveScreen($articulo, $codigo, "rew");
-            // }
-            // else if ($codigo.hasClass("is-center")) {
-            //     moveScreen($codigo, $equipo, "rew");
-            //     $codigoFill.innerHTML = "";
-            // }
-            // else if ($equipo.hasClass("is-center")) {
-            //     if (confirm("¿Desea salir de la aplicación?")) {
-            //         e.preventDefault();
-            //         navigator.app.exitApp();
-            //     }
-            // }
+            const $scArticulo = document.querySelector(".articulo"),
+                $scCodigo = document.querySelector(".codigos");
+
+            if ($scArticulo.classList.contains("is-center")) {
+                backScreen($articulo, $codigo);
+            }
+            else if ($scCodigo.classList.contains("is-center")) {
+                backScreen($codigo, $equipo);
+                $scCodigo.innerHTML = "";
+            }            
+
         }, false);
         app.receivedEvent('deviceready');
     },
