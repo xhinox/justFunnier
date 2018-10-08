@@ -344,10 +344,6 @@ var app = {
 
         }
 
-        document.addEventListener("backbutton", function() {
-            
-        }, false);
-
         $screenHome.on("tap", function (elem) {
             const $target = elem.target;
 
