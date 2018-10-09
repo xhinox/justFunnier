@@ -424,7 +424,11 @@ var app = {
         document.addEventListener("backbutton", function () {
            
             if ($articulo.classList.contains("is-center")) {
-                moveScreen($articulo, $codigo, "rew");
+                if (!filtro) {
+                    moveScreen($articulo, $codigo, "rew");
+                } else {
+                    moveScreen($articulo, $equipo, "rew");
+                }
             }
             else if ($codigo.classList.contains("is-center")) {
                 moveScreen($codigo, $equipo, "rew");
