@@ -44,11 +44,12 @@ var app = {
             const $download = localStorage.getItem("lstequipos");
 
             if (!$download) {
-                 navigator.notification.alert(
-                        'Favor de conectarse y descargar la base de datos',  // message
-                        'Precaución',            // title
-                        'Ok'                  // buttonName
-                    );
+                navigator.notification.alert(
+                    'Favor de conectarse y descargar la base de datos',  // message
+                    function () { },          // Callback
+                    'Precaución',            // title
+                    'Ok'                  // buttonName
+                );
             }
 
         }, false);
@@ -372,6 +373,7 @@ var app = {
 
                     navigator.notification.alert(
                         'Favor de capturar un código',  // message
+                        function() {},          // Callback
                         'Un momento',            // title
                         'Ok'                  // buttonName
                     );
