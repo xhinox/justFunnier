@@ -44,7 +44,11 @@ var app = {
             const $download = localStorage.getItem("lstequipos");
 
             if (!$download) {
-                alert("favor de conectarse y descargar la base de datos");
+                 navigator.notification.alert(
+                        'Favor de conectarse y descargar la base de datos',  // message
+                        'Precaución',            // title
+                        'Ok'                  // buttonName
+                    );
             }
 
         }, false);
@@ -365,7 +369,12 @@ var app = {
             }
             else if ($target.id == "btnSearchCode") {
                 if ($txtSearch == "") {
-                    alert("Favor de capturar un código");
+
+                    navigator.notification.alert(
+                        'Favor de capturar un código',  // message
+                        'Un momento',            // title
+                        'Ok'                  // buttonName
+                    );
                 }
                 else {
                     filtro = true;
