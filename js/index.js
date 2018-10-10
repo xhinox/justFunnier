@@ -6,24 +6,24 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function () {
-        
-        
+
+
         function initPushwoosh() {
             var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
-            
+
             // Should be called before pushwoosh.onDeviceReady
             document.addEventListener('push-notification', function (event) {
                 var notification = event.notification;
                 // handle push open here
             });
-            
+
             // Initialize Pushwoosh. This will trigger all pending push notifications on start.
             pushwoosh.onDeviceReady({
                 projectid: "101718936258",
                 appid: "914DB-1F5D7",
                 serviceName: ""
             });
-            
+
             pushwoosh.registerDevice(
                 function (status) {
                     var pushToken = status.pushToken;
@@ -32,11 +32,11 @@ var app = {
                 }
             );
         }
-            
+
         console.log(device.uuid);
         Keyboard.hideFormAccessoryBar(true);
         initPushwoosh();
-        
+
         app.receivedEvent('deviceready');
     },
     receivedEvent: function (id) {
@@ -145,6 +145,9 @@ var app = {
         }
 
         async function downloadLists(update) {
+            debugger
+            const conexion = checkConnection();
+
             $("#loadMe").modal({
                 backdrop: "static", //remove ability to close modal with click
                 keyboard: false, //remove option to close with keyboard
@@ -307,6 +310,22 @@ var app = {
 
         }
 
+        function checkConnection() {
+            var networkState = navigator.connection.type;
+
+            var states = {};
+            states[Connection.UNKNOWN] = 'Unknown';
+            states[Connection.ETHERNET] = 'Ethernet';
+            states[Connection.WIFI] = 'WiFi';
+            states[Connection.CELL_2G] = 'Cell 2G';
+            states[Connection.CELL_3G] = 'Cell 3G';
+            states[Connection.CELL_4G] = 'Cell 4G';
+            states[Connection.CELL] = 'Cell generic';
+            states[Connection.NONE] = 'offline';
+
+            return states[networkState];
+        }
+
         const $txtSearch = document.getElementById("txtSearchCode");
         $txtSearch.addEventListener("keyup", async function (e) {
             if (e.target.value == "") {
@@ -366,14 +385,25 @@ var app = {
             }
 
             if ($target.classList.contains("btnMenu-update")) {
-                downloadLists(true);
+                if (conexion !== "offline") {
+                    downloadLists(true);
+                }
+                else {
+                    navigator.notification.alert(
+                        'Conectese a una red para actualizar la base de datos',  // message
+                        downloadLists(false),          // Callback
+                        'Advertencia',            // title
+                        'Ok'                  // buttonName
+                    );
+
+                }
             }
             else if ($target.id == "btnSearchCode") {
                 if ($txtSearch == "") {
 
                     navigator.notification.alert(
                         'Favor de capturar un código',  // message
-                        function() {},          // Callback
+                        function () { },          // Callback
                         'Un momento',            // title
                         'Ok'                  // buttonName
                     );
@@ -433,7 +463,7 @@ var app = {
         });
 
         document.addEventListener("backbutton", function () {
-           
+
             if ($articulo.classList.contains("is-center")) {
                 if (!filtro) {
                     moveScreen($articulo, $codigo, "rew");
