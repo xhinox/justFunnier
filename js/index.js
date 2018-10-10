@@ -145,8 +145,6 @@ var app = {
         }
 
         async function downloadLists(update) {
-            debugger
-            const conexion = checkConnection();
 
             $("#loadMe").modal({
                 backdrop: "static", //remove ability to close modal with click
@@ -385,6 +383,7 @@ var app = {
             }
 
             if ($target.classList.contains("btnMenu-update")) {
+                const conexion = checkConnection();
                 if (conexion !== "offline") {
                     downloadLists(true);
                 }
