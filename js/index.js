@@ -389,7 +389,7 @@ var app = {
                 }
                 else {
                     navigator.notification.alert(
-                        'Conectese a una red para actualizar la base de datos',  // message
+                        'Por el momento solo puede navegar en los datos descargados. Para actualizar la base de datos conectese a una red de internet.',  // message
                         downloadLists(false),          // Callback
                         'Advertencia',            // title
                         'Ok'                  // buttonName
