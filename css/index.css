@@ -103,8 +103,8 @@ body {
     background: #e7e8e9 !important;
 }
 
-.eqElement {
-    height: 50px;
+.eqElement, .codElement {
+    height: 60px;
 }
 
 .eqElement img, .eqElement .fa-angle-right,
@@ -130,10 +130,6 @@ body {
     width: 8px;
     height: 16px;
     margin-top: -8px;
-}
-
-.codElement {
-    height: 45px;
 }
 
 .codElement div {

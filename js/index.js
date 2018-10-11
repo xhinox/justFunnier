@@ -103,13 +103,14 @@ var app = {
                 image = `${BASE_URL}equipos/${$equip.image}`;
             }
 
-            const $descripcion = $desc.replace(/(\r\n|\n|\r)/gm, "<br>"),
+            const $nameEquip = $name.replace(/_/gm, " "),
+                $descripcion = $desc.replace(/(\r\n|\n|\r)/gm, "<br>"),
                 $solucion = $sol.replace(/(\r\n|\n|\r)/gm, "<br>");
 
             return (
                 `
                 <div class="card-body">
-                    <h4 class="card-title text-center text-uppercase font-weight-bold mb-3">${$name}</h4>
+                    <h4 class="card-title text-center text-uppercase font-weight-bold mb-3">${$nameEquip}</h4>
                     <div class="card-text">
                         <header class="position-relative mb-3">
                             <div class="artElement position-absolute">${$cod}</div>
