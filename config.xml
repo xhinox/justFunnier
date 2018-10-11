@@ -2,16 +2,16 @@
 <widget xmlns="http://www.w3.org/ns/widgets" 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:gap="http://phonegap.com/ns/1.0"
-    id="mx.mirage.codigoserror" 
+    id="mx.mirage.codigo" 
     version="1.0.0" 
     >
     <!-- Android -->
-    <!-- version="1.0.4" -->
-    <!-- id="org.news.mrg" -->
+    <!-- version="1.0.0" -->
+    <!-- id="mx.mirage.codigoserror" -->
 
     <!-- iOS -->
-    <!-- version="1.0.3" -->
-    <!-- id="mx.mirage.news" -->
+    <!-- version="1.0.0" -->
+    <!-- id="mx.mirage.codigo" -->
     
     <name>codigoError</name>
     <description>
@@ -62,24 +62,30 @@
         <preference name="android-minSdkVersion" value="19" />
         <preference name="android-installLocation" value="internalOnly" />
         <preference name="android-windowSoftInputMode" value="adjustResize" />
-        <icon density="ldpi" src="res/icon/android/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="res/icon/android/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="res/icon/android/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="res/icon/android/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="res/icon/android/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="res/icon/android/drawable-xxxhdpi-icon.png" />
-        <splash density="land-ldpi" src="res/screen/android/splash_image.png" />
-        <splash density="land-mdpi" src="res/screen/android/splash_image.png" />
-        <splash density="land-hdpi" src="res/screen/android/splash_image.png" />
-        <splash density="land-xhdpi" src="res/screen/android/splash_image.png" />
-        <splash density="land-xxhdpi" src="res/screen/android/splash_image.png" />
-        <splash density="land-xxxhdpi" src="res/screen/android/splash_image.png" />
-        <splash density="port-ldpi" src="res/screen/android/splash_image.png" />
-        <splash density="port-mdpi" src="res/screen/android/splash_image.png" />
-        <splash density="port-hdpi" src="res/screen/android/splash_image.png" />
-        <splash density="port-xhdpi" src="res/screen/android/splash_image.png" />
-        <splash density="port-xxhdpi" src="res/screen/android/splash_image.png" />
-        <splash density="port-xxxhdpi" src="res/screen/android/splash_image.png" />
+
+        <icon density="ldpi" src="res/icon/android/drawable-notification_ldpi.png" />
+        <icon density="mdpi" src="res/icon/android/drawable-notification_mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/drawable-notification_hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/drawable-notification_xhdpi.png" />
+        <icon density="xxhdpi" src="res/icon/android/drawable-notification_xxhdpi.png" />
+        
+        <icon density="ldpi" src="res/icon/android/drawable-action_ldpi.png" />
+        <icon density="mdpi" src="res/icon/android/drawable-action_mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/drawable-action_hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/drawable-action_xhdpi.png" />
+        <icon density="xxhdpi" src="res/icon/android/drawable-action_xxhdpi.png" />
+
+        <icon density="ldpi" src="res/icon/android/drawable-launcher_icon_ldpi.png" />
+        <icon density="mdpi" src="res/icon/android/drawable-launcher_icon_mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/drawable-launcher_icon_hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/drawable-launcher_icon_xhdpi.png" />
+        <icon density="xxhdpi" src="res/icon/android/drawable-launcher_icon_xxhdpi.png" />
+        <icon density="xxhdpi" src="res/icon/android/drawable-launcher_icon_xxxhdpi.png" />
+
+        <splash density="port-ldpi" src="res/screen/android/ldpi-port.png" />
+        <splash density="port-mdpi" src="res/screen/android/mdpi-port.png" />
+        <splash density="port-hdpi" src="res/screen/android/hdpi-port.png" />
+        <splash density="port-xhdpi" src="res/screen/android/xhdpi-port.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -94,6 +100,7 @@
         <icon height="114" platform="ios" src="res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
         <icon height="80" platform="ios" src="res/icon/ios/icon-40@2x.png" width="80" />
+        <icon height="120" platform="ios" src="res/icon/ios/icon-40@3x.png" width="120" />
         <icon height="50" platform="ios" src="res/icon/ios/icon-50.png" width="50" />
         <icon height="100" platform="ios" src="res/icon/ios/icon-50@2x.png" width="100" />
         <icon height="60" platform="ios" src="res/icon/ios/icon-60.png" width="60" />
@@ -104,19 +111,20 @@
         <icon height="76" platform="ios" src="res/icon/ios/icon-76.png" width="76" />
         <icon height="152" platform="ios" src="res/icon/ios/icon-76@2x.png" width="152" />
         <icon height="29" platform="ios" src="res/icon/ios/icon-small.png" width="29" />
-        <icon height="58" platform="ios" src="res/icon/ios/icon-small@2x.png" width="58" />
         <icon height="87" platform="ios" src="res/icon/ios/icon-small@3x.png" width="87" />
-        
-        <splash height="1136" platform="ios" src="res/screen/ios/splash_image.png" width="640" />
-        <splash height="1334" platform="ios" src="res/screen/ios/splash_image.png" width="750" />
-        <splash height="2208" platform="ios" src="res/screen/ios/splash_image.png" width="1242" />
-        <splash height="1242" platform="ios" src="res/screen/ios/splash_image.png" width="2208" />
-        <splash height="1536" platform="ios" src="res/screen/ios/splash_image.png" width="2048" />
-        <splash height="768" platform="ios" src="res/screen/ios/splash_image.png" width="1024" />
-        <splash height="2048" platform="ios" src="res/screen/ios/splash_image.png" width="1536" />
-        <splash height="1024" platform="ios" src="res/screen/ios/splash_image.png" width="768" />
-        <splash height="960" platform="ios" src="res/screen/ios/splash_image.png" width="640" />
-        <splash height="480" platform="ios" src="res/screen/ios/splash_image.png" width="320" />
+        <icon height="58" platform="ios" src="res/icon/ios/icon-small@2x.png" width="58" />
+        <icon height="20" platform="ios" src="res/icon/ios/icon-Notification.png" width="20" />
+        <icon height="40" platform="ios" src="res/icon/ios/icon-Notification@2x.png" width="40" />
+        <icon height="60" platform="ios" src="res/icon/ios/icon-Notification@3x.png" width="60" />
+
+        <icon height="512" platform="ios" src="res/icon/ios/iTunesArtwork.png" width="512" />
+        <icon height="1024" platform="ios" src="res/icon/ios/iTunesArtwork@2x.png" width="1024" />
+
+        <splash height="1334" platform="ios" src="res/screen/ios/Default-667h@2x.png" width="750" />
+        <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x.png" width="640" />
+        <splash height="568" platform="ios" src="res/screen/ios/Default-568h.png" width="320" />
+        <splash height="960" platform="ios" src="res/screen/ios/Default@2x.png" width="640" />
+        <splash height="480" platform="ios" src="res/screen/ios/Default.png" width="320" />
     </platform>
     <engine name="android" spec="^7.0.0" />
 </widget>
