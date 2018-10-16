@@ -6,8 +6,7 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function () {
-
-
+        
         function initPushwoosh() {
             var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
@@ -33,11 +32,16 @@ var app = {
             );
         }
 
-        console.log(device.uuid);
-        Keyboard.hideFormAccessoryBar(true);
-        initPushwoosh();
+        try {
+            console.log(device.uuid);
+            Keyboard.hideFormAccessoryBar(true);
+            initPushwoosh();
 
-        app.receivedEvent('deviceready');
+        } catch (error) {
+            alert(error);
+        } finally {
+            app.receivedEvent('deviceready');
+        }
     },
     receivedEvent: function (id) {
         document.addEventListener("offline", function () {
