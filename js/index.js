@@ -212,7 +212,7 @@ var app = {
                             const $rowElement = createTemplate(HTMLString);
                             $codigoFill.append($rowElement);
                         });
-                        $codigoFill.scrollTop = 0;
+                        // $codigoFill.scrollTop = 0;
                     }
                     else {
                         const $lstCode = Object.values($lstCodigo)[$id];
@@ -223,7 +223,7 @@ var app = {
                                 $codigoFill.append($rowElement);
                             }
                         });
-                        $codigoFill.scrollTop = 0;
+                        // $codigoFill.scrollTop = 0;
                     }
 
                 } else {
@@ -232,8 +232,8 @@ var app = {
                     $codigoFill.innerHTML = "";
                     const HTMLString = codigoTemplate($txtCodigo, $id);
                     const $rowElement = createTemplate(HTMLString);
-                    $codigoFill.append($rowElement);
-                    $codigoFill.scrollTop = 0;
+                    // $codigoFill.append($rowElement);
+                    // $codigoFill.scrollTop = 0;
                 }
 
             } catch (error) {
@@ -288,7 +288,7 @@ var app = {
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
-                $articuloFill.scrollTop = 0;
+                // $articuloFill.scrollTop = 0;
 
             } else {
                 const $txtCodigo = document.getElementById("txtSearchCode").value;
@@ -304,7 +304,7 @@ var app = {
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
-                $articuloFill.scrollTop = 0;
+                // $articuloFill.scrollTop = 0;
             }
 
         }
@@ -345,10 +345,12 @@ var app = {
         function moveScreen($sc1, $sc2, $action) {
 
             $sc2.classList.remove("is-hidden");
+
             if ($action === "fwd") {
 
                 $sc1.classList.remove("is-center");
                 $sc1.classList.add("is-left");
+
 
                 $sc2.classList.remove("is-right");
                 $sc2.classList.add("is-center");
@@ -362,6 +364,7 @@ var app = {
                 $sc2.classList.add("is-center");
 
             }
+
             $sc1.classList.add("is-hidden");
 
         }

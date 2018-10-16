@@ -26,14 +26,12 @@ body {
     background: rgb(235,0,41);
 }
 
-.container-fluid {
-    background: #E4E4E4;
-    /* height: 100%; */
+.home {
+    z-index: 9999;
 }
 
-.home {
-    height: 100%;
-    z-index: 9999;
+.container-fluid {
+    background: #E4E4E4;
 }
 
 .is-left,
@@ -48,18 +46,21 @@ body {
 }
 
 .is-left {
+    height: 0%;
     -webkit-transform: translateX(-100%);
         -ms-transform: translateX(-100%);
             transform: translateX(-100%);
 }
 
 .is-center {
+    height:100%;
     -webkit-transform: translateX(0%);
         -ms-transform: translateX(0%);
             transform: translateX(0%);
 }
 
 .is-right {
+    height: 0%;
     -webkit-transform: translateX(100%);
         -ms-transform: translateX(100%);
             transform: translateX(100%);
@@ -117,7 +118,7 @@ body {
     top: 50%;
 }
 
-.eqElement img {
+.eqElement img {<
     width: 180px;
     height: 38.55px;
     margin-top: -19.25px;
