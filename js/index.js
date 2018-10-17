@@ -35,8 +35,6 @@ var app = {
         try {
             Keyboard.hideFormAccessoryBar(true);
             initPushwoosh();
-            StatusBar.backgroundColorByHexString("#eb0029");
-
         } catch (error) {
             alert(error);
         } finally {
