@@ -35,7 +35,6 @@ body {
     height: 100vh;
     width: 100vw;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
     position:relative;
     overflow-x: hidden;
 }
@@ -108,6 +107,8 @@ body {
 
 .equipos-fill, .codigos-fill {
     flex-flow: column;
+    -webkit-overflow-scrolling: touch;
+
 }
 
 .eqElement, .codElement {
