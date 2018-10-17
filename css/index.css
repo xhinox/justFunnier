@@ -2,12 +2,17 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+html,
+body {
+    position: fixed;
+    overflow: hidden;
+}
+
 body {
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
     background-color:#FFF;
-
 }
 
 .nav {
@@ -26,8 +31,17 @@ body {
     background: rgb(235,0,41);
 }
 
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    position:relative;
+    overflow-x: hidden;
+}
+
 .home {
-    z-index: 9999;
+    height: inherit;
 }
 
 .container-fluid {
@@ -37,8 +51,10 @@ body {
 .is-left,
 .is-center,
 .is-right {
-    opacity: 1;
-    visibility: visible;
+    /* opacity: 1;
+    visibility: visible; */
+    top: 0;
+    left: 0;
     -webkit-transition: all 280ms ease-in;
     -o-transition: all 280ms ease-in;
     transition: all 280ms ease-in;
@@ -46,24 +62,24 @@ body {
 }
 
 .is-left {
-    height: 0%;
-    -webkit-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
-            transform: translateX(-100%);
+    /* height: 0%; */
+    -webkit-transform: translate3d(-100%,0,0);
+        -ms-transform: translate3d(-100%,0,0);
+            transform: translate3d(-100%,0,0);
 }
 
 .is-center {
-    height:100%;
-    -webkit-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-            transform: translateX(0%);
+    /* height:100%; */
+    -webkit-transform: translate3d(0%,0,0);
+        -ms-transform: translate3d(0%,0,0);
+            transform: translate3d(0%,0,0);
 }
 
 .is-right {
-    height: 0%;
-    -webkit-transform: translateX(100%);
-        -ms-transform: translateX(100%);
-            transform: translateX(100%);
+    /* height: 0%; */
+    -webkit-transform: translate3d(100%,0,0);
+        -ms-transform: translate3d(100%,0,0);
+            transform: translate3d(100%,0,0);
 }
 
 .is-hidden {

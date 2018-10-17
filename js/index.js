@@ -33,7 +33,6 @@ var app = {
         }
 
         try {
-            console.log(device.uuid);
             Keyboard.hideFormAccessoryBar(true);
             initPushwoosh();
 
@@ -251,32 +250,49 @@ var app = {
                     $indexKey = 0,
                     $lstVals = Object.values($lstEquivalente);
 
-                for (var i = 0; i < $lstKeys.length; i++) {
-                    if ($lstKeys[i] == value) {
-                        $indexKey = i;
-                        break
-                    }
-                }
-
-                $equipoFill.innerHTML = "";
-                const $lstValue = Object.values($lstVals[$indexKey]);
-                let count = 0;
-                $lstValue.forEach((elem) => {
-                    var $lst = Object.keys(elem);
-
-                    $lst.forEach((title) => {
-                        if (title in $lstEquipo) {
-                            const HTMLString = equipoTemplate(title, $lstEquipo[title].logo, count, $lstEquipo[title].local);
-                            const $rowElement = createTemplate(HTMLString);
-                            $equipoFill.append($rowElement);
-                            count++;
-                        }
-                    });
+                const exist = $lstKeys.filter((cod) => {
+                    return cod.indexOf(value) === 0;
                 });
 
+                if (exist.length !== 0) {
+                    for (var i = 0; i < $lstKeys.length; i++) {
+                        if ($lstKeys[i] == value) {
+                            $indexKey = i;
+
+                            $equipoFill.innerHTML = "";
+                            const $lstValue = Object.values($lstVals[$indexKey]);
+                            let count = 0;
+                            $lstValue.forEach((elem) => {
+                                var $lst = Object.keys(elem);
+
+                                $lst.forEach((title) => {
+                                    if (title in $lstEquipo) {
+                                        const HTMLString = equipoTemplate(title, $lstEquipo[title].logo, count, $lstEquipo[title].local);
+                                        const $rowElement = createTemplate(HTMLString);
+                                        $equipoFill.append($rowElement);
+                                        count++;
+                                    }
+                                });
+                            });
+                        }
+                    }
+                }
+                else {
+                    navigator.notification.alert(
+                        'El código capturado no existe, favor de intentarlo de nuevo.',
+                        downloadLists(false),
+                        'Advertencia',
+                        'Ok'
+                    );
+                }
+
             } catch (error) {
-                console.log(error);
-                // swal("", "No se pudo enlazar con el servidor, favor de intentarlo de nuevo", "warning");
+                navigator.notification.alert(
+                    'No se pudo enlazar con el servidor, favor de intentarlo de nuevo.',
+                    downloadLists(false),
+                    'Advertencia',
+                    'Ok'
+                );
             }
         }
 
