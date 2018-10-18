@@ -363,7 +363,7 @@ var app = {
 
         function moveScreen($sc1, $sc2, $action) {
 
-            $sc2.classList.remove("is-hidden");
+            // $sc2.classList.remove("is-hidden");
 
             if ($action === "fwd") {
 
@@ -384,7 +384,7 @@ var app = {
 
             }
 
-            $sc1.classList.add("is-hidden");
+            // $sc1.classList.add("is-hidden");
 
         }
 
