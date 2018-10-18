@@ -107,8 +107,6 @@ body {
 
 .equipos-fill, .codigos-fill {
     flex-flow: column;
-    -webkit-overflow-scrolling: touch;
-
 }
 
 .eqElement, .codElement {
