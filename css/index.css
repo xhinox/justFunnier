@@ -34,12 +34,14 @@ body {
 .wrapper {
     height: 100vh;
     width: 100vw;
-    overflow-y: scroll;
     position:relative;
     overflow-x: hidden;
 }
 
-.home {
+.home,
+.equipos,
+.codigos,
+.articulo {
     height: inherit;
 }
 
@@ -50,8 +52,6 @@ body {
 .is-left,
 .is-center,
 .is-right {
-    /* opacity: 1;
-    visibility: visible; */
     top: 0;
     left: 0;
     -webkit-transition: all 280ms ease-in;
@@ -61,30 +61,23 @@ body {
 }
 
 .is-left {
-    /* height: 0%; */
     -webkit-transform: translate3d(-100%,0,0);
         -ms-transform: translate3d(-100%,0,0);
             transform: translate3d(-100%,0,0);
 }
 
 .is-center {
-    /* height:100%; */
     -webkit-transform: translate3d(0%,0,0);
         -ms-transform: translate3d(0%,0,0);
             transform: translate3d(0%,0,0);
 }
 
 .is-right {
-    /* height: 0%; */
     -webkit-transform: translate3d(100%,0,0);
         -ms-transform: translate3d(100%,0,0);
             transform: translate3d(100%,0,0);
 }
 
-.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-}
 
 .fa-bars,
 .fa-angle-left {
@@ -107,6 +100,7 @@ body {
 
 .equipos-fill, .codigos-fill {
     flex-flow: column;
+    overflow-y: scroll;
 }
 
 .eqElement, .codElement {
