@@ -216,7 +216,7 @@ var app = {
                             const $rowElement = createTemplate(HTMLString);
                             $codigoFill.append($rowElement);
                         });
-                        // $codigoFill.scrollTop = 0;
+
                     }
                     else {
                         const $lstCode = Object.values($lstCodigo)[$id];
@@ -227,7 +227,7 @@ var app = {
                                 $codigoFill.append($rowElement);
                             }
                         });
-                        // $codigoFill.scrollTop = 0;
+                        
                     }
 
                 } else {
@@ -236,8 +236,7 @@ var app = {
                     $codigoFill.innerHTML = "";
                     const HTMLString = codigoTemplate($txtCodigo, $id);
                     const $rowElement = createTemplate(HTMLString);
-                    // $codigoFill.append($rowElement);
-                    // $codigoFill.scrollTop = 0;
+                    
                 }
 
             } catch (error) {
@@ -309,7 +308,6 @@ var app = {
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
-                // $articuloFill.scrollTop = 0;
 
             } else {
                 const $txtCodigo = document.getElementById("txtSearchCode").value;
@@ -320,12 +318,11 @@ var app = {
                 });
 
                 const $selectCode = Object.values($lstCodigo)[$lstIndex][$txtCodigo];
-
                 const HTMLString = articuloTemplate($selectEq.dataset.eq, $txtCodigo, $equipo, $selectCode.descrip, $selectCode.solucion);
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
-                // $articuloFill.scrollTop = 0;
+                
             }
 
         }
@@ -366,7 +363,7 @@ var app = {
 
         function moveScreen($sc1, $sc2, $action) {
 
-            // $sc2.classList.remove("is-hidden");
+            $sc2.classList.remove("is-hidden");
 
             if ($action === "fwd") {
 
@@ -387,7 +384,7 @@ var app = {
 
             }
 
-            // $sc1.classList.add("is-hidden");
+            $sc1.classList.add("is-hidden");
 
         }
 
@@ -400,7 +397,7 @@ var app = {
                 $navigation.classList.remove("is-hidden");
                 $wrapper.classList.remove("is-hidden");
 
-                // moveScreen($home, $equipo, "fwd");
+                moveScreen($home, $equipo, "fwd");
             }
         });
 
@@ -452,11 +449,11 @@ var app = {
 
                 if (!filtro) {
                     await loadCodigo($target.dataset.id);
-                    // window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
+                    window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
                     moveScreen($equipo, $codigo, "fwd");
                 } else {
                     await loadArticulo(saveData, $target.dataset.id);
-                    // window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
+                    window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                     moveScreen($equipo, $articulo, "fwd");
                 }
             }
@@ -472,7 +469,7 @@ var app = {
             else if ($target.parentElement.classList.contains("codigos-fill") || $target.parentElement.classList.contains("codElement")) {
                 const $selEquipo = JSON.parse(sessionStorage.getItem("equipo"));
                 await loadArticulo($selEquipo, $target.dataset.id);
-                // window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
+                window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                 moveScreen($codigo, $articulo, "fwd");
             }
         });
@@ -482,10 +479,10 @@ var app = {
 
             if ($target.classList.contains("btnMenu-back")) {
                 if (!filtro) {
-                    // window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
+                    window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
                     moveScreen($articulo, $codigo, "rew");
                 } else {
-                    // window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
+                    window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                     moveScreen($articulo, $equipo, "rew");
                 }
             }

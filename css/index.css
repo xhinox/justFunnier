@@ -7,6 +7,7 @@ body {
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
     background-color:#FFF;
+    overflow-x: hidden;
 }
 
 .nav {
@@ -29,25 +30,11 @@ body {
     background: #E4E4E4;
 }
 
-.navigation {
-    z-index: 10;
-}
-
-.wrapper {
-    top: 61px;
-    height: calc(100% - 61px);
-    width: 100vw;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
-.home {
-    height: 100vh;
-}
-
 .is-left,
 .is-center,
 .is-right {
+    opacity: 1;
+    visibility: visible;
     -webkit-transition: all 280ms ease-in;
     -o-transition: all 280ms ease-in;
     transition: all 280ms ease-in;
@@ -73,8 +60,10 @@ body {
 }
 
 .is-hidden {
-    display: none !important;
+    opacity: 0;
+    visibility: hidden;
 }
+
 
 .fa-bars,
 .fa-angle-left {
