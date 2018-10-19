@@ -42,18 +42,21 @@ body {
 }
 
 .is-left {
+    height: 0%;
     -webkit-transform: translate3d(-100%,0,0);
         -ms-transform: translate3d(-100%,0,0);
             transform: translate3d(-100%,0,0);
 }
 
 .is-center {
+    height: 100%;
     -webkit-transform: translate3d(0%,0,0);
         -ms-transform: translate3d(0%,0,0);
             transform: translate3d(0%,0,0);
 }
 
 .is-right {
+    height: 0%;
     -webkit-transform: translate3d(100%,0,0);
         -ms-transform: translate3d(100%,0,0);
             transform: translate3d(100%,0,0);
@@ -63,7 +66,6 @@ body {
     opacity: 0;
     visibility: hidden;
 }
-
 
 .fa-bars,
 .fa-angle-left {
@@ -86,7 +88,6 @@ body {
 
 .equipos-fill, .codigos-fill {
     flex-flow: column;
-    overflow-y: scroll;
 }
 
 .eqElement, .codElement {
