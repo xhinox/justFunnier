@@ -7,7 +7,6 @@ body {
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
     background-color:#FFF;
-
 }
 
 .nav {
@@ -26,12 +25,24 @@ body {
     background: rgb(235,0,41);
 }
 
-.home {
-    height: 100vh;
-}
-
 .container-fluid {
     background: #E4E4E4;
+}
+
+.navigation {
+    z-index: 10;
+}
+
+.wrapper {
+    top: 61px;
+    height: calc(100% - 61px);
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.home {
+    height: 100vh;
 }
 
 .is-left,
@@ -44,24 +55,25 @@ body {
 }
 
 .is-left {
-    height: 0%;
-    -webkit-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
-            transform: translateX(-100%);
+    -webkit-transform: translate3d(-100%,0,0);
+        -ms-transform: translate3d(-100%,0,0);
+            transform: translate3d(-100%,0,0);
 }
 
 .is-center {
-    height:100%;
-    -webkit-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-            transform: translateX(0%);
+    -webkit-transform: translate3d(0%,0,0);
+        -ms-transform: translate3d(0%,0,0);
+            transform: translate3d(0%,0,0);
 }
 
 .is-right {
-    height: 0%;
-    -webkit-transform: translateX(100%);
-        -ms-transform: translateX(100%);
-            transform: translateX(100%);
+    -webkit-transform: translate3d(100%,0,0);
+        -ms-transform: translate3d(100%,0,0);
+            transform: translate3d(100%,0,0);
+}
+
+.is-hidden {
+    display: none !important;
 }
 
 .fa-bars,
@@ -85,6 +97,7 @@ body {
 
 .equipos-fill, .codigos-fill {
     flex-flow: column;
+    overflow-y: scroll;
 }
 
 .eqElement, .codElement {
@@ -111,7 +124,7 @@ body {
     top: 50%;
 }
 
-.eqElement img {
+.eqElement img {<
     width: 180px;
     height: 38.55px;
     margin-top: -19.25px;

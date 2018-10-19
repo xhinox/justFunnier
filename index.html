@@ -1,160 +1,183 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- Android -->
-        <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
-        <!-- iOS -->
-        <meta name=”viewport” content="viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' 
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- Android -->
+    <!-- <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> -->
+    <!-- iOS -->
+    <meta name=”viewport” content="viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' 
                 http://mirage-app-dev.s3-us-west-1.amazonaws.com 
                 https://bdcodigoerror.firebaseio.com; 
                 style-src 'self' 'unsafe-inline'; media-src *" />
-        <link rel="stylesheet" href="css/bootstrap.min.css" >
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Codigos Diagnostico</title>
-        <!-- iOS -->
-        <style>
-            body {
-                padding-top: constant(safe-area-inset-top);
-                /* iOS 11.0 */
-                padding-top: env(safe-area-inset-top);
-                /* iOS 11.2 */
-            }
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Codigos Diagnostico</title>
+    <!-- iOS -->
+    <style>
+        body {
+            /* iOS 11.0 */
+            padding-top: constant(safe-area-inset-top);
+            /* iOS 11.2 */
+            padding-top: env(safe-area-inset-top);
+        }
         
-            .home, .equipos, .codigos, .articulo {
-                margin-bottom: constant(safe-area-inset-bottom);
-                /* iOS 11.0 */
-                margin-bottom: env(safe-area-inset-bottom);
-                /* iOS 11.2 */
-            }
-        </style>
-    </head>
+        .home, .equipos, .codigos, .articulo {
+            /* iOS 11.0 */
+            margin-bottom: constant(safe-area-inset-bottom);
+            /* iOS 11.2 */
+            margin-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</head>
 
-    <body>
-    
-        <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
-            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="loader"></div>
-                        <div class="loader-txt">
-                            <p>Descargando listas...</p>
-                        </div>
+<body>
+
+    <div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="loader"></div>
+                    <div class="loader-txt">
+                        <p>Descargando listas...</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- <main class="wrapper"> -->
-            <section class="home container-fluid text-center position-absolute is-center">
-                <div class="row">
-                    <div class="col-12 mt-5">
-                        <img src="img/titulo2.png" alt="" width="260" height="auto" />
-                    </div>
-                    <div class="col-12 my-5">
-                        <p class="h5">Para consultar los códigos de diagnóstico de nuestros modelos oprima el siguiente botón.</p>
-                    </div>
-        
-                    <div class="col-12">
-                        <img class="btnConsulta" src="img/consultaboton.png" alt="" width="150" height="auto" />
-                    </div>
+    <section class="home container-fluid text-center position-absolute">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <img src="img/titulo2.png" alt="" width="260" height="auto" />
+            </div>
+            <div class="col-12 my-5">
+                <p class="h5">Para consultar los códigos de diagnóstico de nuestros modelos oprima el siguiente botón.</p>
+            </div>
+    
+            <div class="col-12">
+                <img class="btnConsulta" src="img/consultaboton.png" alt="" width="150" height="auto" />
+            </div>
+        </div>
+    </section>
+
+    <nav class="navigation container-fluid d-block position-fixed is-hidden">
+        <header class="sticky-top">
+            <div class="position-absolute btnMenu-back is-hidden" data-item="menu"></div>
+            <div class="position-absolute btnMenu-update" data-item="update"></div>
+            <nav class="nav row align-items-center">
+                <div class="col-1">
+                    <i class="fas fa-bars fa-lg is-hidden"></i>
                 </div>
-            </section>
-        
-            <section class="equipos container-fluid position-absolute is-right">
-                <header class="sticky-top">
-                    <!-- <div class="position-absolute btnMenu-back" data-item="menu"></div> -->
-                    <div class="position-absolute btnMenu-update" data-item="update"></div>
-                    <nav class="nav row align-items-center">
-                        <div class="col-1">
-                            <!-- <i class="fas fa-bars fa-lg"></i> -->
-                        </div>
-                        <div class="col text-center">
-                            <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
-                            Códigos de Diagnóstico
-                        </div>
-                        <div class="col-1 p-0">
-                            <i class="fas fa-redo-alt fa-lg"></i>
-                        </div>
-                    </nav>
-                </header>
-        
-                <div class="container-fluid mt-2 p-0">
-                    <div class="row">
-                        <div class="col">
-                            <div class="search">
-                                <div class="input-group mb-2">
-                                    <input type="text" id="txtSearchCode" class="form-control text-danger" placeholder="Capture el codigo"
-                                        aria-label="Capture el codigo" aria-describedby="btnSearchCode" maxlength="2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-danger" type="button" id="btnSearchCode">Buscar</button>
-                                    </div>
+                <div class="col text-center">
+                    <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
+                    Códigos de Diagnóstico
+                </div>
+                <div class="col-1 p-0">
+                    <i class="fas fa-redo-alt fa-lg"></i>
+                </div>
+            </nav>
+        </header>
+    </nav>
+
+    <main class="wrapper d-block position-fixed is-hidden">
+    
+        <section class="equipos container-fluid position-absolute is-center">
+            <!-- <header class="sticky-top">
+                <div class="position-absolute btnMenu-back" data-item="menu"></div>
+                <div class="position-absolute btnMenu-update" data-item="update"></div>
+                <nav class="nav row align-items-center">
+                    <div class="col-1">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </div>
+                    <div class="col text-center">
+                        <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
+                        Códigos de Diagnóstico
+                    </div>
+                    <div class="col-1 p-0">
+                        <i class="fas fa-redo-alt fa-lg"></i>
+                    </div>
+                </nav>
+            </header> -->
+    
+            <!-- <div class="container-fluid mt-2 p-0"> -->
+                <div class="row">
+                    <div class="col">
+                        <div class="search">
+                            <div class="input-group my-2">
+                                <input type="text" id="txtSearchCode" class="form-control text-danger" placeholder="Capture el codigo"
+                                    aria-label="Capture el codigo" aria-describedby="btnSearchCode" maxlength="2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger" type="button" id="btnSearchCode">Buscar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col p-0">
-                            <div class="equipos-fill d-flex"></div>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col p-0">
+                        <div class="equipos-fill d-flex"></div>
                     </div>
                 </div>
-            </section>
-        
-            <section class="codigos container-fluid position-absolute is-right">
-                <header class="sticky-top">
-                    <div class="position-absolute btnMenu-back" data-link="back"></div>
-                    <nav class="nav row align-items-center">
-                        <div class="col-1"><i class="fas fa-angle-left fa-lg"></i></div>
-                        <div class="col-10 text-center">
-                            <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
-                            Códigos de Diagnóstico
-                        </div>
-                    </nav>
-                </header>
-        
-                <div class="container-fluid mt-1 p-0">
-                    <div class="row">
-                        <div class="col p-0">
-                            <div class="codigos-fill d-flex"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        
-            <section class="articulo container-fluid position-absolute is-right">
-                <header class="sticky-top">
-                    <div class="position-absolute btnMenu-back" data-link="back"></div>
-                    <nav class="nav row align-items-center">
-                        <div class="col-1"><i class="fas fa-angle-left fa-lg"></i></div>
-                        <div class="col-10 text-center">
-                            <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
-                            Códigos de Diagnóstico
-                        </div>
-                    </nav>
-                </header>
-        
-                <div class="container mt-3">
-                    <div class="row">
-                        <div class="card articulo-fill">
-                        </div>
-                    </div>
-                </div>
-            </section>
-        <!-- </main> -->
-      
-        <script type="text/javascript" src="cordova.js"></script>
-        <script src="js/jquery-3.3.1.slim.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/hammer.min.js"></script>
-        <script src="js/fontawesome-all.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+            <!-- </div> -->
+        </section>
     
-    </body>
+        <section class="codigos container-fluid position-absolute is-right">
+            <!-- <header class="sticky-top">
+                <div class="position-absolute btnMenu-back" data-link="back"></div>
+                <nav class="nav row align-items-center">
+                    <div class="col-1"><i class="fas fa-angle-left fa-lg"></i></div>
+                    <div class="col-10 text-center">
+                        <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
+                        Códigos de Diagnóstico
+                    </div>
+                </nav>
+            </header> -->
+    
+            <!-- <div class="container-fluid mt-1 p-0"> -->
+                <div class="row">
+                    <div class="col p-0">
+                        <div class="codigos-fill d-flex"></div>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </section>
+    
+        <section class="articulo container-fluid position-absolute is-right">
+            <!-- <header class="sticky-top">
+                <div class="position-absolute btnMenu-back" data-link="back"></div>
+                <nav class="nav row align-items-center">
+                    <div class="col-1"><i class="fas fa-angle-left fa-lg"></i></div>
+                    <div class="col-10 text-center">
+                        <img src="img/ic_launcher.png" width="35" height="auto" alt="" />
+                        Códigos de Diagnóstico
+                    </div>
+                </nav>
+            </header> -->
+    
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="card articulo-fill">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/fontawesome-all.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+</body>
+
 </html>

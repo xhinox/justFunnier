@@ -6,7 +6,7 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function () {
-        
+
         function initPushwoosh() {
             var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
@@ -33,8 +33,10 @@ var app = {
         }
 
         try {
+            console.log(device.uuid);
             Keyboard.hideFormAccessoryBar(true);
             initPushwoosh();
+
         } catch (error) {
             alert(error);
         } finally {
@@ -357,6 +359,7 @@ var app = {
         });
 
         const $home = document.querySelector(".home"), $screenHome = new Hammer($home);
+        const $wrapper = document.querySelector(".wrapper"), $navigation = document.querySelector(".navigation");
         const $equipo = document.querySelector(".equipos"), $screenEquipo = new Hammer($equipo);
         const $codigo = document.querySelector(".codigos"), $screenCodigo = new Hammer($codigo);
         const $articulo = document.querySelector(".articulo"), $screenArticulo = new Hammer($articulo);
@@ -393,7 +396,11 @@ var app = {
 
             if ($target.classList.contains("btnConsulta")) {
                 downloadLists(false);
-                moveScreen($home, $equipo, "fwd");
+                $home.classList.add("is-hidden");
+                $navigation.classList.remove("is-hidden");
+                $wrapper.classList.remove("is-hidden");
+
+                // moveScreen($home, $equipo, "fwd");
             }
         });
 
@@ -445,11 +452,11 @@ var app = {
 
                 if (!filtro) {
                     await loadCodigo($target.dataset.id);
-                    window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
+                    // window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
                     moveScreen($equipo, $codigo, "fwd");
                 } else {
                     await loadArticulo(saveData, $target.dataset.id);
-                    window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
+                    // window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                     moveScreen($equipo, $articulo, "fwd");
                 }
             }
@@ -465,7 +472,7 @@ var app = {
             else if ($target.parentElement.classList.contains("codigos-fill") || $target.parentElement.classList.contains("codElement")) {
                 const $selEquipo = JSON.parse(sessionStorage.getItem("equipo"));
                 await loadArticulo($selEquipo, $target.dataset.id);
-                window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
+                // window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                 moveScreen($codigo, $articulo, "fwd");
             }
         });
@@ -475,10 +482,10 @@ var app = {
 
             if ($target.classList.contains("btnMenu-back")) {
                 if (!filtro) {
-                    window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
+                    // window.scrollTo(0, - document.querySelector(".codigos .container-fluid").scrollHeight);
                     moveScreen($articulo, $codigo, "rew");
                 } else {
-                    window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
+                    // window.scrollTo(0, - document.querySelector(".articulo .container").scrollHeight);
                     moveScreen($articulo, $equipo, "rew");
                 }
             }
