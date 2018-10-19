@@ -13,14 +13,7 @@ var app = {
             // Should be called before pushwoosh.onDeviceReady
             document.addEventListener('push-notification', function (event) {
                 var notification = event.notification;
-                // handle push open here
-                
-                navigator.notification.alert(
-                    'Notificacion recibida, ahora a actualizar.',
-                    downloadLists(true),
-                    'Advertencia',
-                    'Ok'
-                );
+                alert('entro: ' + notification);
             });
 
             // Initialize Pushwoosh. This will trigger all pending push notifications on start.
@@ -157,6 +150,13 @@ var app = {
         }
 
         async function downloadLists(update) {
+            var $loadMsg = document.querySelector(".loader-txt");
+
+            if(update) {
+                $loadMsg.innerText = "Descargando lista de datos";
+            } else {
+                $loadMsg.innerText = "Generando lista de equipos";
+            }
 
             $("#loadMe").modal({
                 backdrop: "static", //remove ability to close modal with click
@@ -352,12 +352,17 @@ var app = {
 
         const $txtSearch = document.getElementById("txtSearchCode");
         $txtSearch.addEventListener("keyup", async function (e) {
+
             if (e.target.value == "") {
+                var $loadMsg = document.querySelector(".loader-txt");
+                $loadMsg.innerText = "Buscando código: " + e.target.value;
+
                 $("#loadMe").modal({
-                    backdrop: "static", //remove ability to close modal with click
-                    keyboard: false, //remove option to close with keyboard
-                    show: true //Display loader!
+                    backdrop: "static", 
+                    keyboard: false,
+                    show: true
                 });
+
                 await loadEquip();
             }
         });
@@ -391,6 +396,8 @@ var app = {
             }
 
             $sc1.classList.add("is-hidden");
+
+            alert("" + $sc2.classList.toString() + "");
 
         }
 
