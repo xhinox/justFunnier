@@ -14,6 +14,13 @@ var app = {
             document.addEventListener('push-notification', function (event) {
                 var notification = event.notification;
                 // handle push open here
+                
+                navigator.notification.alert(
+                    'Notificacion recibida, ahora a actualizar.',
+                    downloadLists(true),
+                    'Advertencia',
+                    'Ok'
+                );
             });
 
             // Initialize Pushwoosh. This will trigger all pending push notifications on start.
@@ -356,7 +363,6 @@ var app = {
         });
 
         const $home = document.querySelector(".home"), $screenHome = new Hammer($home);
-        const $wrapper = document.querySelector(".wrapper"), $navigation = document.querySelector(".navigation");
         const $equipo = document.querySelector(".equipos"), $screenEquipo = new Hammer($equipo);
         const $codigo = document.querySelector(".codigos"), $screenCodigo = new Hammer($codigo);
         const $articulo = document.querySelector(".articulo"), $screenArticulo = new Hammer($articulo);
@@ -393,10 +399,6 @@ var app = {
 
             if ($target.classList.contains("btnConsulta")) {
                 downloadLists(false);
-                $home.classList.add("is-hidden");
-                $navigation.classList.remove("is-hidden");
-                $wrapper.classList.remove("is-hidden");
-
                 moveScreen($home, $equipo, "fwd");
             }
         });
