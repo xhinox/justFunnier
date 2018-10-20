@@ -12,8 +12,16 @@ var app = {
 
             // Should be called before pushwoosh.onDeviceReady
             document.addEventListener('push-notification', function (event) {
-                var notification = event.notification;
-                alert('entro: ' + notification);
+                var message = event.notification.message;
+                var userData = event.notification.userdata;
+
+                alert("" + JSON.stringify(message));
+
+                if (typeof (userData) != "undefined") {
+                    alert('user data: ' + JSON.stringify(userData));
+                }
+
+                downloadLists(true);
             });
 
             // Initialize Pushwoosh. This will trigger all pending push notifications on start.
@@ -355,7 +363,7 @@ var app = {
 
             if (e.target.value == "") {
                 var $loadMsg = document.querySelector(".loader-txt");
-                $loadMsg.innerText = "Buscando código: " + e.target.value;
+                $loadMsg.innerText = "Generando lista de equipos";
 
                 $("#loadMe").modal({
                     backdrop: "static", 
@@ -397,8 +405,6 @@ var app = {
 
             $sc1.classList.add("is-hidden");
 
-            alert("" + $sc2.classList.toString() + "");
-
         }
 
         $screenHome.on("tap", function (elem) {
@@ -425,10 +431,10 @@ var app = {
                 }
                 else {
                     navigator.notification.alert(
-                        'Por el momento solo puede navegar en los datos descargados. Para actualizar la base de datos conectese a una red de internet.',  // message
-                        downloadLists(false),          // Callback
-                        'Advertencia',            // title
-                        'Ok'                  // buttonName
+                        'Por el momento solo puede navegar en los datos descargados. Para actualizar la base de datos conectese a una red de internet.',
+                        downloadLists(false),
+                        'Advertencia',
+                        'Ok'
                     );
 
                 }
