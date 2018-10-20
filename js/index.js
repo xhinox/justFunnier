@@ -6,21 +6,14 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function () {
-
+        app.receivedEvent('deviceready');
+    },
+    receivedEvent: function (id) {
         function initPushwoosh() {
             var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
             // Should be called before pushwoosh.onDeviceReady
             document.addEventListener('push-notification', function (event) {
-                var message = event.notification.message;
-                var userData = event.notification.userdata;
-
-                alert("" + JSON.stringify(message));
-
-                if (typeof (userData) != "undefined") {
-                    alert('user data: ' + JSON.stringify(userData));
-                }
-
                 downloadLists(true);
             });
 
@@ -47,11 +40,8 @@ var app = {
 
         } catch (error) {
             alert(error);
-        } finally {
-            app.receivedEvent('deviceready');
         }
-    },
-    receivedEvent: function (id) {
+
         document.addEventListener("offline", function () {
             const $download = localStorage.getItem("lstequipos");
 
