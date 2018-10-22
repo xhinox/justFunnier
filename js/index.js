@@ -34,12 +34,11 @@ var app = {
         }
 
         try {
-            console.log(device.uuid);
             Keyboard.hideFormAccessoryBar(true);
             initPushwoosh();
 
         } catch (error) {
-            alert(error);
+            console.log(error);
         }
 
         document.addEventListener("offline", function () {
@@ -47,10 +46,10 @@ var app = {
 
             if (!$download) {
                 navigator.notification.alert(
-                    'Favor de conectarse y descargar la base de datos',  // message
-                    function () { },          // Callback
-                    'Precaución',            // title
-                    'Ok'                  // buttonName
+                    'Favor de conectarse y descargar la base de datos',
+                    function () { },          
+                    'Precaución',            
+                    'Ok'                  
                 );
             }
 
@@ -157,9 +156,9 @@ var app = {
             }
 
             $("#loadMe").modal({
-                backdrop: "static", //remove ability to close modal with click
-                keyboard: false, //remove option to close with keyboard
-                show: true //Display loader!
+                backdrop: "static",
+                keyboard: false,
+                show: true
             });
 
             if (update) {
@@ -241,7 +240,6 @@ var app = {
                     $codigoFill.innerHTML = "";
                     const HTMLString = codigoTemplate($txtCodigo, $id);
                     const $rowElement = createTemplate(HTMLString);
-                    
                 }
 
             } catch (error) {
@@ -327,15 +325,13 @@ var app = {
                 const $rowElement = createTemplate(HTMLString);
                 $articuloFill.innerHTML = "";
                 $articuloFill.append($rowElement);
-                
             }
-
         }
 
         function checkConnection() {
-            var networkState = navigator.connection.type;
+            var networkState = navigator.connection.type,
+                states = {};
 
-            var states = {};
             states[Connection.UNKNOWN] = 'Unknown';
             states[Connection.ETHERNET] = 'Ethernet';
             states[Connection.WIFI] = 'WiFi';
@@ -350,7 +346,6 @@ var app = {
 
         const $txtSearch = document.getElementById("txtSearchCode");
         $txtSearch.addEventListener("keyup", async function (e) {
-
             if (e.target.value == "") {
                 var $loadMsg = document.querySelector(".loader-txt");
                 $loadMsg.innerText = "Generando lista de equipos";
@@ -375,16 +370,13 @@ var app = {
             $sc2.classList.remove("is-hidden");
 
             if ($action === "fwd") {
-
                 $sc1.classList.remove("is-center");
                 $sc1.classList.add("is-left");
-
 
                 $sc2.classList.remove("is-right");
                 $sc2.classList.add("is-center");
 
             } else {
-
                 $sc1.classList.remove("is-center");
                 $sc1.classList.add("is-right");
 
@@ -394,7 +386,6 @@ var app = {
             }
 
             $sc1.classList.add("is-hidden");
-
         }
 
         $screenHome.on("tap", function (elem) {
@@ -426,7 +417,6 @@ var app = {
                         'Advertencia',
                         'Ok'
                     );
-
                 }
             }
             else if ($target.id == "btnSearchCode") {
