@@ -62,7 +62,7 @@
         <preference name="android-targetSdkVersion" value="28" />
         <preference name="android-installLocation" value="internalOnly" />
         <preference name="android-windowSoftInputMode" value="adjustResize" />
-         <resource-file src="platforms/android/google-services.json" target="google-services.json" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
 
         <icon density="ldpi" src="res/icon/android/drawable-notification_ldpi.png" />
         <icon density="mdpi" src="res/icon/android/drawable-notification_mdpi.png" />
