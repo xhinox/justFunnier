@@ -26,6 +26,10 @@ body {
     background: rgb(235,0,41);
 }
 
+.btnAviso {
+    background: white;
+}
+
 .container-fluid {
     background: #E4E4E4;
 }
