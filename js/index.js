@@ -43,7 +43,7 @@ var app = {
 
         const avisoPrivacidad = document.querySelector('.btnAviso');
         avisoPrivacidad.addEventListener('tap', function() {
-            var ref = cordova.InAppBrowser.open('https://mirage.mx/politica-privacidad-aplicaciones/', '_blank', 'location=yes');
+            cordova.InAppBrowser.open('https://mirage.mx/politica-privacidad-aplicaciones/', '_blank');
         });
 
         document.addEventListener("offline", function () {
