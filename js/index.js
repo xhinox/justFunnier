@@ -41,11 +41,6 @@ var app = {
             console.log(error);
         }
 
-        const avisoPrivacidad = document.querySelector('.btnAviso');
-        avisoPrivacidad.addEventListener('tap', function() {
-            cordova.InAppBrowser.open('https://mirage.mx/politica-privacidad-aplicaciones/', '_blank');
-        });
-
         document.addEventListener("offline", function () {
             const $download = localStorage.getItem("lstequipos");
 
@@ -399,6 +394,9 @@ var app = {
             if ($target.classList.contains("btnConsulta")) {
                 downloadLists(false);
                 moveScreen($home, $equipo, "fwd");
+            } else if ($target.classList.contains("btnAviso")) {
+                alert('entro');
+                cordova.InAppBrowser.open('https://mirage.mx/politica-privacidad-aplicaciones/', '_blank');
             }
         });
 
