@@ -41,11 +41,6 @@ var app = {
             console.log(error);
         }
 
-        const avisoPrivacidad = document.querySelector('.btnAviso');
-        avisoPrivacidad.addEventListener('tap', function() {
-            var ref = cordova.InAppBrowser.open('https://mirage.mx/politica-privacidad-aplicaciones/', '_blank', 'location=yes');
-        });
-
         document.addEventListener("offline", function () {
             const $download = localStorage.getItem("lstequipos");
 
