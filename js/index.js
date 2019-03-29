@@ -395,7 +395,6 @@ var app = {
                 downloadLists(false);
                 moveScreen($home, $equipo, "fwd");
             } else if ($target.classList.contains("btnAviso")) {
-                alert('entro');
                 cordova.InAppBrowser.open('https://mirage.mx/politica-privacidad-aplicaciones/', '_blank');
             }
         });
