@@ -44,7 +44,7 @@
     <plugin name="cordova-plugin-keyboard" source="npm" spec="~1.2.0" />
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
     <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
-    <plugin name="cordova-plugin-inappbrowser" source="npm" />
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
 
     <allow-navigation href="http://*" />
     <allow-navigation href="https://*" />
